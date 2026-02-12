@@ -7,34 +7,25 @@
  * @param {number[]} arr Входной массив чисел для сортировки
  * @returns {number[]} Новый массив, отсортированный по частоте появления элементов
  */
-function sortByFrequency(arr) {
+const sortByFrequency = (arr) => {
   if (arr.length === 0) {
     return [];
   }
 
-  const frequencyMap = {};
-  for (let i = 0; i < arr.length; i++) {
-    const num = arr[i];
-    if (frequencyMap[num] === undefined) {
-      frequencyMap[num] = 1;
-    } else {
-      frequencyMap[num]++;
-    }
-  }
+  const frequencyMap = new Map;
+
+  arr.forEach(num => {
+    frequencyMap[num] = (frequencyMap[num] || 0) +1;
+  });
 
   const result = arr.slice();
 
-  result.sort(function(a, b) {
+  return [...arr].sort((a,b) => {
     const freqA = frequencyMap[a];
     const freqB = frequencyMap[b];
-
-    if (freqA !== freqB) {
-      return freqB - freqA;
-    }
-
-    return a - b;
+    let diff = (freqA !== freqB) ? freqB-freqA : a-b;
+    return diff;
   });
 
- return result;
 }
 
