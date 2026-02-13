@@ -12,13 +12,11 @@ const sortByFrequency = (arr) => {
     return [];
   }
 
-  const frequencyMap = new Map;
+  const frequencyMap = new Map();
 
   arr.forEach(num => {
     frequencyMap[num] = (frequencyMap[num] || 0) +1;
   });
-
-  const result = arr.slice();
 
   return [...arr].sort((a,b) => {
     const freqA = frequencyMap[a];
